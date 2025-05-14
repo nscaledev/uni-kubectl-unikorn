@@ -6,10 +6,10 @@ require (
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.6
 	github.com/unikorn-cloud/compute v0.1.7
-	github.com/unikorn-cloud/core v0.1.95
+	github.com/unikorn-cloud/core v0.1.96-rc1
 	github.com/unikorn-cloud/identity v0.2.63
 	github.com/unikorn-cloud/kubernetes v0.2.64
-	github.com/unikorn-cloud/region v0.1.54
+	github.com/unikorn-cloud/region v0.1.55-rc1
 	k8s.io/api v0.33.0
 	k8s.io/apimachinery v0.33.0
 	k8s.io/cli-runtime v0.33.0
@@ -58,4 +58,12 @@ require (
 	sigs.k8s.io/json v0.0.0-20241014173422-cfa47c3a1cc8 // indirect
 	sigs.k8s.io/randfill v1.0.0 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.7.0 // indirect
+)
+
+replace (
+	github.com/unikorn-cloud/compute => github.com/nscaledev/uni-compute v1.0.0
+	github.com/unikorn-cloud/core => github.com/nscaledev/uni-core v1.0.0
+	github.com/unikorn-cloud/identity => github.com/nscaledev/uni-identity v1.0.0
+	github.com/unikorn-cloud/kubernetes => github.com/nscaledev/uni-kubernetes v1.0.0
+	github.com/unikorn-cloud/region => github.com/nscaledev/uni-region v1.0.0
 )
