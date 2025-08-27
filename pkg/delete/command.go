@@ -14,44 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
+package delete
 
 import (
-	"fmt"
-	"os"
-
 	"github.com/spf13/cobra"
 
-	"github.com/unikorn-cloud/kubectl-unikorn/pkg/create"
-	"github.com/unikorn-cloud/kubectl-unikorn/pkg/delete"
-	"github.com/unikorn-cloud/kubectl-unikorn/pkg/describe"
+	"github.com/unikorn-cloud/kubectl-unikorn/pkg/delete/user"
 	"github.com/unikorn-cloud/kubectl-unikorn/pkg/factory"
-	"github.com/unikorn-cloud/kubectl-unikorn/pkg/get"
 )
 
-func main() {
+func Command(factory *factory.Factory) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "kubectl-unikorn",
-		Short: "Unikorn kubectl plugin",
-	}
-
-	factory := factory.NewFactory()
-	factory.AddFlags(cmd.PersistentFlags())
-
-	if err := factory.RegisterCompletionFunctions(cmd); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		Use:   "delete",
+		Short: "Delete a resource",
 	}
 
 	cmd.AddCommand(
-		create.Command(factory),
-		delete.Command(factory),
-		describe.Command(factory),
-		get.Command(factory),
+		user.Command(factory),
 	)
 
-	if err := cmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	return cmd
 }
