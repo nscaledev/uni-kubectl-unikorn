@@ -158,3 +158,23 @@ func GetUser(ctx context.Context, cli client.Client, namespace, email string) (*
 
 	return &resources.Items[index], nil
 }
+
+func GetOrgUsers(ctx context.Context, cli client.Client, userName string) (*identityv1.OrganizationUserList, error) {
+	organizationUsers := &identityv1.OrganizationUserList{}
+
+	if err := cli.List(ctx, organizationUsers, client.MatchingLabels{constants.UserLabel: userName}); err != nil {
+		return nil, err
+	}
+
+	return organizationUsers, nil
+}
+
+func GetOrgGroups(ctx context.Context, cli client.Client, organizationID string) (*identityv1.GroupList, error) {
+	orgGroups := &identityv1.GroupList{}
+
+	if err := cli.List(ctx, orgGroups, client.MatchingLabels{constants.OrganizationLabel: organizationID}); err != nil {
+		return nil, err
+	}
+
+	return orgGroups, nil
+}
